@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+	{% load bootstrap3 %}
+	{% bootstrap_css %}
+	{% bootstrap_javascript %}
+	<title>Event Manage Page</title>
+	}
+</head>
+<body role="document">
+
+	<!-- Navigation -->
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="/event_manage/">Guest Manage System</a>
+			</div>
+			<div class="collapse navbar-collapse" id="navbar">
+				<ul class="nav navbar-nav">
+					<li class="active"><a href="#">發佈會</a></li>
+					<li><a href="/guest_manage/">嘉賓</a></li>
+				</ul>
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href="/admin/">{{user}}</a></li>
+					<li><a href="/logout/">登出</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+
+	<!-- Search -->
+	<div class="container">
+		<div class="page-header" style="padding-top: 60px;">
+			<div id="navbar" class="navbar-collapse collapse">
+				<form class="navbar-form" method="get" action="/search_name/">
+					<div class="form-group">
+						<input type="text" name="name" placeholder="name" class="form-control">
+					</div>
+					<button type="submit" class="btn btn-success">搜尋</button>
+				</form>
+			</div>
+		</div>
+	</div>
+
+	<!-- 發佈會list -->
+	<section>
+		<div class="container">
+			 <div class="row">
+				<div class="col-md-6">
+					<table class="table table-striped">
+						<thead>
+							<tr>
+								<th>id</th>
+								<th>名稱</th>
+								<th>狀態</th>
+								<th>地址</th>
+								<th>時間</th>
+							</tr>
+						</thead>
+						<tbody>
+							{% for event in events %}
+							<tr>
+								<td>{{ event.id }}</td>
+								<td>{{ event.name }}</td>
+								<td>{{ event.status }}</td>
+								<td>{{ event.address }}</td>
+								<td>{{ event.start_time }}</td>
+								<td>
+									<a href="/sign_index/{{event.id}}/" target="{{ event.id }}_blank">
+										sign
+									</a>
+								</td>
+							</tr>
+							{% endfor%}
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</section>
+
+
+	<!-- <h1>Login Success!</h1>
+	<div style="float:right">
+		<a href="">Hello~ {{user}}</a>
+	</div> -->
+</body>
+</html>

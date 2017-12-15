@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Django page</title>
+	{% load staticfiles %}
+    <link href="{% static "css/style.css" %}" rel="stylesheet" type="text/css" />
+</head>
+<body>
+	<h1>發佈會管理</h1>
+	<form method="post" action="/login_action/">
+		<input type="text" name="username" placeholder="username"><br />
+		<input type="password" name="password" placeholder="password"> <br />
+		<span class="info">{{ error }}</span><br />
+		<button id="btn" type="submit">登錄</button>
+		{% csrf_token %}
+	</form>
+
+</body>
+</html>
